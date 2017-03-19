@@ -1,0 +1,29 @@
+{
+  "name": "eslint-plugin-lab",
+  "version": "0.0.0",
+  "description": "Linting rules for lab testing framework",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "author": "David Rankin",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha tests --recursive",
+    "test-watch": "npm test -- -w",
+    "test-debug": "npm test -- --inspect --debug-brk"
+  },
+  "dependencies": {
+    "requireindex": "~1.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "~3.9.1",
+    "mocha": "^3.1.2"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "ISC"
+}
