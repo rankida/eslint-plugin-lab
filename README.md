@@ -60,4 +60,4 @@ If you project follows the hapi style guide then your eslint file would look som
 
 
 
-![A Rankida Project](http://www.rankida.com/assets/logo/logo.png)
+![A Rankida Project](http://www.rankida.com/assets/logo/logo_small.png)
