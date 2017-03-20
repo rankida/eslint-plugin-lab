@@ -9,6 +9,9 @@
   ],
   "author": "David Rankin",
   "main": "lib/index.js",
+  "repository": {
+    "url": "git://github.com/rankida/eslint-plugin-lab"
+  },
   "scripts": {
     "test": "mocha tests --recursive",
     "test-watch": "npm test -- -w",
