@@ -23,16 +23,33 @@ ruleTester.run("no-only-experiments", rule, {
     valid: [
         'lab.experiment("valid", function() {})',
         'lab.test("valid", function() {})',
+        'lab.describe("valid", function() {})',
+        'lab.it("valid", function() {})',
         'lab.experiment',
         'lab.test',
+        'lab.describe',
+        'lab.it',
         'experiment("valid", function() {})',
-        'lab("valid", function() {})',
-        'only("some other func")'
+        'test("valid", function() {})',
+        'describe("valid", function() {})',
+        'it("valid", function() {})',
+        'only("some other func")',
+        'experiment',
+        'test',
+        'describe',
+        'it'
     ],
 
     invalid: [
         {
             code: "lab.experiment.only('describe something', function() { });",
+            errors: [{
+                message: "experiment should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
+            code: "lab.experiment.only",
             errors: [{
                 message: "experiment should not be marked as only",
                 type: "MemberExpression"
@@ -46,7 +63,21 @@ ruleTester.run("no-only-experiments", rule, {
             }]
         },
         {
+            code: "experiment.only",
+            errors: [{
+                message: "experiment should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
             code: "lab.describe.only('describe something', function() { });",
+            errors: [{
+                message: "describe should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
+            code: "lab.describe.only",
             errors: [{
                 message: "describe should not be marked as only",
                 type: "MemberExpression"
@@ -60,7 +91,21 @@ ruleTester.run("no-only-experiments", rule, {
             }]
         },
         {
+            code: "describe.only",
+            errors: [{
+                message: "describe should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
             code: "lab.test.only('describe something', function() { });",
+            errors: [{
+                message: "test should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
+            code: "lab.test.only",
             errors: [{
                 message: "test should not be marked as only",
                 type: "MemberExpression"
@@ -74,6 +119,13 @@ ruleTester.run("no-only-experiments", rule, {
             }]
         },
         {
+            code: "test.only",
+            errors: [{
+                message: "test should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
             code: "lab.it.only('describe something', function() { });",
             errors: [{
                 message: "it should not be marked as only",
@@ -81,7 +133,21 @@ ruleTester.run("no-only-experiments", rule, {
             }]
         },
         {
+            code: "lab.it.only",
+            errors: [{
+                message: "it should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
             code: "it.only('describe something', function() { });",
+            errors: [{
+                message: "it should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
+            code: "it.only",
             errors: [{
                 message: "it should not be marked as only",
                 type: "MemberExpression"
