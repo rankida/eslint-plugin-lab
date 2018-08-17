@@ -1,5 +1,5 @@
 /**
- * @fileoverview Disallow .only for experiments and describes
+ * @fileoverview Disallow .only for experiments, describes, tests, and it
  * @author no-only-experiments
  */
 "use strict";
@@ -26,7 +26,7 @@ ruleTester.run("no-only-experiments", rule, {
         'lab.experiment',
         'lab.test',
         'experiment("valid", function() {})',
-        'test("valid", function() {})',
+        'lab("valid", function() {})',
         'only("some other func")'
     ],
 
@@ -70,6 +70,20 @@ ruleTester.run("no-only-experiments", rule, {
             code: "test.only('describe something', function() { });",
             errors: [{
                 message: "test should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
+            code: "lab.it.only('describe something', function() { });",
+            errors: [{
+                message: "it should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
+            code: "it.only('describe something', function() { });",
+            errors: [{
+                message: "it should not be marked as only",
                 type: "MemberExpression"
             }]
         }
