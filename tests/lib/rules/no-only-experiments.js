@@ -22,8 +22,11 @@ ruleTester.run("no-only-experiments", rule, {
 
     valid: [
         'lab.experiment("valid", function() {})',
+        'lab.test("valid", function() {})',
         'lab.experiment',
+        'lab.test',
         'experiment("valid", function() {})',
+        'test("valid", function() {})',
         'only("some other func")'
     ],
 
@@ -53,6 +56,20 @@ ruleTester.run("no-only-experiments", rule, {
             code: "describe.only('describe something', function() { });",
             errors: [{
                 message: "describe should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
+            code: "lab.test.only('describe something', function() { });",
+            errors: [{
+                message: "test should not be marked as only",
+                type: "MemberExpression"
+            }]
+        },
+        {
+            code: "test.only('describe something', function() { });",
+            errors: [{
+                message: "test should not be marked as only",
                 type: "MemberExpression"
             }]
         }
